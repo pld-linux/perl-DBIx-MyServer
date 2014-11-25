@@ -1,12 +1,11 @@
 #
 # Conditional build:
 %bcond_without	tests		# do not perform "make test"
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define	pdir	DBIx
 %define	pnam	MyServer
+%include	/usr/lib/rpm/macros.perl
 Summary:	DBIx::MyServer - Server-side implementation of the MySQL network protocol
-#Summary(pl.UTF-8):
 Name:		perl-DBIx-MyServer
 Version:	0.42
 Release:	1
@@ -14,10 +13,9 @@ License:	GPL v2
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/DBIx/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	5ee5f09c206aae6af3f10c467c847a63
-#URL:		http://search.cpan.org/dist/DBIx-MyServer/
+URL:		http://search.cpan.org/dist/DBIx-MyServer/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
-# generic URL, check or change before uncommenting
 %if %{with tests}
 BuildRequires:	perl-DBD-mysql
 BuildRequires:	perl-DBI
@@ -34,8 +32,6 @@ commands and queries and reply accordingly.
 Please see examples/myserver.pl for a system that allows building
 functional mysql servers that rewrite queries or return arbitary data.
 
-# %description -l pl.UTF-8 # TODO
-
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
@@ -48,12 +44,11 @@ functional mysql servers that rewrite queries or return arbitary data.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
