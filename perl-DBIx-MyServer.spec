@@ -4,7 +4,6 @@
 
 %define	pdir	DBIx
 %define	pnam	MyServer
-%include	/usr/lib/rpm/macros.perl
 Summary:	DBIx::MyServer - Server-side implementation of the MySQL network protocol
 Name:		perl-DBIx-MyServer
 Version:	0.42
